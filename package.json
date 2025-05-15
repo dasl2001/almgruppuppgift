@@ -16,10 +16,22 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "supertest": "^6.4.2"
+    "supertest": "^7.1.1"
   },
   "jest": {
     "testEnvironment": "node"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dasl2001/almgruppuppgift.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dasl2001/almgruppuppgift/issues"
+  },
+  "homepage": "https://github.com/dasl2001/almgruppuppgift#readme"
 }
-
