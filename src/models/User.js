@@ -3,7 +3,6 @@ Importerar moduler
 DataTypes är ett objekt från Sequelize som innehåller alla datatyper VI kan använda 
 sequelize är databasanslutning som vi importerar från en annan fil (../db)
 */
-
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
@@ -17,7 +16,7 @@ const User = sequelize.define('User', {
 Textsträng 
 Måste vara unik (ingen annan användare får ha samma)
 Får inte vara tom (allowNull: false)
-*/
+*/  
   username: { type: DataTypes.STRING, unique: true, allowNull: false },
 
 /*
@@ -31,7 +30,7 @@ Validering: måste följa e-postformat
 /*
 Textsträng
 Validering: måste vara en giltig URL
-*/
+*/  
   profileImage: { type: DataTypes.STRING, validate: { isUrl: true } }
 });
 
@@ -40,19 +39,3 @@ Gör att du kan använda User-modellen i andra filer
 */
 module.exports = User;
 
-models/User.js
-const mongoose = require('mongoose');
-const Accommodation = require('./Accommodation');
-
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  // andra fält...
-});
-
-// Radera boenden kopplade till användaren innan användaren tas bort
-userSchema.pre('remove', async function(next) {
-  await Accommodation.deleteMany({ userId: this._id });
-  next();
-});
-
-module.exports = mongoose.model('User', userSchema);

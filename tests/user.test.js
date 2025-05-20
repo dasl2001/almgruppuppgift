@@ -19,7 +19,7 @@ describe('User model', () => {
 Först skapas en användare med a@test.com
 Sen försöker du skapa en annan användare med samma e-post
 Eftersom e-post är unik, ska det kasta ett fel → testet förväntar sig det (.rejects.toThrow())
-*/
+*/  
   test('no duplicate email', async () => {
     await User.create({ username: 'a', email: 'a@test.com', profileImage: 'http://img.com/1.jpg' });
     await expect(User.create({ username: 'b', email: 'a@test.com', profileImage: 'http://img.com/2.jpg' })).rejects.toThrow();
@@ -28,7 +28,7 @@ Eftersom e-post är unik, ska det kasta ett fel → testet förväntar sig det (
 /*
 Försöker skapa en användare med ogiltig e-post 
 E-postvalidering (isEmail: true) aktiveras och kastar ett fel
-*/
+*/  
   test('valid email', async () => {
     await expect(User.create({ username: 'c', email: 'bademail', profileImage: 'http://img.com/3.jpg' })).rejects.toThrow();
   });
@@ -36,7 +36,7 @@ E-postvalidering (isEmail: true) aktiveras och kastar ett fel
 /*
 Två användare försöker ha samma username
 Eftersom username också är satt som unik, kastas ett fel
-*/
+*/  
   test('unique username', async () => {
     await User.create({ username: 'unique', email: 'unique@test.com', profileImage: 'http://img.com/4.jpg' });
     await expect(User.create({ username: 'unique', email: 'diff@test.com', profileImage: 'http://img.com/5.jpg' })).rejects.toThrow();
@@ -44,8 +44,9 @@ Eftersom username också är satt som unik, kastas ett fel
 
 /*
 Felaktigt värde (not-a-url) ska inte accepteras enligt validate: { isUrl: true }
-*/
+*/  
   test('profileImage is url', async () => {
     await expect(User.create({ username: 'imguser', email: 'imguser@test.com', profileImage: 'not-a-url' })).rejects.toThrow();
   });
 });
+

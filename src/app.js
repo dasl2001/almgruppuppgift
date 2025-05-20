@@ -1,6 +1,6 @@
 const express = require('express');
 const sequelize = require('./db');
-require('./models/User');
+require('./models/user');
 require('./models/accomodation');
 
 const app = express();
@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => res.send('API is running!'));
 
-sequelize.sync();
+sequelize.sync(); //Skapar tabeller om de inte finns
 
 module.exports = app;
 
