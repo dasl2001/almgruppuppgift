@@ -56,6 +56,3 @@ userSchema.pre('remove', async function(next) {
 });
 
 module.exports = mongoose.model('User', userSchema);
-
-
-
