@@ -8,3 +8,23 @@ const User = sequelize.define('User', {
 });
 
 module.exports = User;
+
+models/User.js
+const mongoose = require('mongoose');
+const Accommodation = require('./Accommodation');
+
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  // andra fält...
+});
+
+// Radera boenden kopplade till användaren innan användaren tas bort
+userSchema.pre('remove', async function(next) {
+  await Accommodation.deleteMany({ userId: this._id });
+  next();
+});
+
+module.exports = mongoose.model('User', userSchema);
+
+
+

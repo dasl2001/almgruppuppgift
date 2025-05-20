@@ -1,6 +1,6 @@
 const express = require('express');
 const sequelize = require('./db');
-require('./models/user');
+require('./models/User');
 require('./models/accomodation');
 
 const app = express();
