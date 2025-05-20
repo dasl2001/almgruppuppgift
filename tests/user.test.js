@@ -1,27 +1,11 @@
-/*
-Importerar databasen och user-modellen
-*/
 const sequelize = require('../src/db');
 const User = require('../src/models/user');
 
-/*
-Rensar databasen innan testerna körs (force: true = tabeller återskapas)
-Gör att varje test börjar med en tom databas
-*/
-beforeAll(async () => { await sequelize.sync({ force: true }); });
-
-/*
-Rensar Users-tabellen före varje test
-*/
 beforeEach(async () => {
-  await User.destroy({ where: {} });
+  await sequelize.sync({ force: true });
 });
 
-/*
-Samlar alla tester för User-modellen
-*/
 describe('User model', () => {
-
   test('no duplicate email', async () => {
     await User.create({ username: 'a', email: 'a@test.com', profileImage: 'http://img.com/1.jpg' });
     await expect(
@@ -48,4 +32,5 @@ describe('User model', () => {
     ).rejects.toThrow();
   });
 });
+
 
