@@ -1,7 +1,7 @@
 const express = require('express');
-const sequelize = require('./db');
-require('./models/user');
-require('./models/accomodation');
+const sequelize = require('./db.js');
+require('./models/user.js');
+require('./models/accomodation.js');
 
 const app = express();
 app.use(express.json());
