@@ -7,12 +7,12 @@ const Accomodation = sequelize.define('Accomodation', {
   address:   { type: DataTypes.STRING,  allowNull: false },
   city:      { type: DataTypes.STRING,  allowNull: false },
   country:   { type: DataTypes.STRING,  allowNull: false },
-  zipcode:   { type: DataTypes.STRING,  allowNull: false }, // postnummer
-  rent:      { type: DataTypes.FLOAT,   allowNull: false }, // hyra
-  rooms:     { type: DataTypes.INTEGER, allowNull: false }  // antal rum
+  zipcode:   { type: DataTypes.STRING,  allowNull: false },
+  rent:      { type: DataTypes.FLOAT,   allowNull: false },
+  rooms:     { type: DataTypes.INTEGER, allowNull: false }
 });
 
-// User har många boenden, boende tillhör user (userId kopplas automatiskt)
+// Rätt sätt att skapa relationer
 User.hasMany(Accomodation, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 Accomodation.belongsTo(User);
 

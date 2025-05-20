@@ -2,9 +2,6 @@ const sequelize = require('../src/db');
 const User = require('../src/models/user');
 const Accomodation = require('../src/models/accomodation');
 
-User.hasMany(Accomodation, { onDelete: 'CASCADE' });
-Accomodation.belongsTo(User);
-
 beforeEach(async () => {
   await sequelize.sync({ force: true });
 });
@@ -32,5 +29,6 @@ describe('Accomodation model', () => {
     expect(found).toBeNull();
   });
 });
+
 
 
