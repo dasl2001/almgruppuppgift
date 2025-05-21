@@ -1,4 +1,5 @@
 /*
+user.js
 Importerar moduler
 DataTypes är ett objekt från Sequelize som innehåller alla datatyper VI kan använda 
 sequelize är databasanslutning som vi importerar från en annan fil (../db)
