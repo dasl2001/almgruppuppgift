@@ -36,3 +36,9 @@ if (require.main === module) {
     console.log('Server running on http://localhost:3000');
   });
 }
+
+/*
+Kommando för docker:
+docker build -t alm-app .
+>> docker run -p 3000:3000 alm-app
+*/
