@@ -12,21 +12,25 @@ Skapar en modell som heter User.
 Sequelize skapar en motsvarande tabell i databasen (om inte redan finns).
 */
 const User = sequelize.define('User', {
-
+ 
 /*
-Textsträng 
-Måste vara unik (ingen annan användare får ha samma)
-Får inte vara tom (allowNull: false)
+Definierar ett fält för användarnamn i modellen
 */  
-  username: { type: DataTypes.STRING, unique: true, allowNull: false },
+username: { 
+  type: DataTypes.STRING, 
+  allowNull: false, 
+  unique: { name: 'unique_username', msg: 'Användarnamn måste vara unikt' }
+},
 
 /*
-Textsträng
-Måste vara unik
-Får inte vara tom
-Validering: måste följa e-postformat
+Definierar ett fält för e-postadress i modellen
 */
-  email: { type: DataTypes.STRING, unique: true, allowNull: false, validate: { isEmail: true } },
+email: { 
+  type: DataTypes.STRING, 
+  allowNull: false, 
+  unique: { name: 'unique_email', msg: 'E-post måste vara unik' },
+  validate: { isEmail: true }
+},
 
 /*
 Textsträng
