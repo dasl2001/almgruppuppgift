@@ -4,7 +4,7 @@ DataTypes är ett objekt från Sequelize som innehåller alla datatyper VI kan a
 sequelize är databasanslutning som vi importerar från en annan fil (../db)
 */
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db.js');
+const sequelize = require('../db');
 
 /*
 Skapar en modell som heter User.
@@ -30,8 +30,8 @@ Validering: måste följa e-postformat
 /*
 Textsträng
 Validering: måste vara en giltig URL
-*/  
-  profileImage: { type: DataTypes.STRING, validate: { isUrl: true } }
+*/
+  profileImage: { type: DataTypes.STRING, allowNull: true, validate: { isUrl: true } }
 });
 
 /*
