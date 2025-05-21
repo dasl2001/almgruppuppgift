@@ -1,10 +1,13 @@
-// src/models/accomodation.js
-
+/*
+Importera datatyper från Sequelize
+*/
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 const User = require('./user');
 
-// Definierar modellen Accomodation
+/*
+Definierar modellen Accomodation
+*/
 const Accomodation = sequelize.define('Accomodation', {
   address:   { type: DataTypes.STRING,  allowNull: false },
   city:      { type: DataTypes.STRING,  allowNull: false },
@@ -23,8 +26,9 @@ const Accomodation = sequelize.define('Accomodation', {
 });
 
 
-
-// Skapa relationen så att CASCADE fungerar
+/*
+Skapa relationen så att CASCADE fungerar
+*/
 User.hasMany(Accomodation, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 Accomodation.belongsTo(User, { foreignKey: { allowNull: false } });
 
