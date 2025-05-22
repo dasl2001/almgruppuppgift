@@ -16,7 +16,7 @@ Kan tolka JSON i inkommande requests (req.body)
 */
 app.use(express.json());
 
-app.get('/', (req, res) => res.send('Welcome to the group of David, Kalle and Doug'));
+app.get('/', (req, res) => res.send('Welcome to the group of David Slivo and Kalle Soderberg'));
 
 /*
 Skapar tabellerna i databasen om de inte redan finns
