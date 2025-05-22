@@ -1,0 +1,43 @@
+version: '3.8' # Anger version på Compose-formatet
+
+services:
+  # Databas
+  db:
+    image: postgres:15            # Använder Postgres version 15 som Docker-image
+    environment:                  # Miljövariabler för att skapa databas & användare
+      POSTGRES_USER: postgres     # Skapar användaren "postgres"
+      POSTGRES_PASSWORD: postgres # Sätter lösenordet till "postgres"
+      POSTGRES_DB: postgres       # Skapar databasen "postgres"
+    ports:
+      - "5432:5432"               # Öppnar port 5432 (standard för Postgres)
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Sparar databasen i en Docker-volym för att behålla datan mellan omstarter
+
+  # Applikation
+  app:
+    build:
+      context: .                  # Bygger från nuvarande mapp
+      dockerfile: Dockerfile      # Använder Dockerfile i roten
+    environment:
+      DB_HOST: db                 # Host för databasen – matchar service-namnet ovan!
+      DB_USER: postgres           # Samma användare som i db-tjänsten
+      DB_PASSWORD: postgres       # Samma lösenord
+      DB_NAME: postgres           # Samma databasnamn
+    ports:
+      - "3000:3000"               # Exponerar port 3000 på host:en
+    depends_on:
+      - db                        # Startar databasen före appen
+
+volumes:
+  pgdata:                         # Definierar volymen som används av databasen
+
+
+#Starta: docker compose up -d
+#Stoppa: docker compose down
+#Stoppa & ta bort all data: docker compose down -v
+#Visa loggar: docker compose logs -f
+#Kör kommandon i container: docker compose exec <service> <kommando>
+#Byt miljö: docker compose --env-file .env.test up
+#Kommando för köra allt i docker även testerna 
+#docker compose up --build
+#docker compose exec app npm test
