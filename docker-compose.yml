@@ -1,5 +1,7 @@
-version: '3.8'
-
+#Skapar en docker-compose.yml som innehåller två services:
+#db (PostgreSQL) och app (Node.js-backend).
+#db använder postgresbilden, sätter upp användare/lösenord/databas med miljövariabler, samt sparar data i en volym.
+#app bygger från Dockerfile, får miljövariabler, och depends_on säkerställer att databasen startar först.
 services:
   db:
     image: postgres:15
@@ -12,9 +14,22 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: postgres
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
 volumes:
   pgdata:
-
 
 
 #Starta: docker compose up -d
