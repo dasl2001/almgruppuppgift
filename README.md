@@ -32,13 +32,13 @@ Detta projekt är en del av kursen Applikationslivscykelhantering på Nackademin
   - hyra
   - rum
   - userId 
-  - User-modell inkluderar:
+- User-modell inkluderar:
   - unik e-post
   - unik användarnamn
   - validerad e-postformat
   - profilbilds-URL
-  - CASCADE-radering av `Accomodation` när `User` tas bort
-  - Enhetstester med **Jest** för båda modeller
+  - cASCADE-radering av `Accomodation` när `User` tas bort
+  - enhetstester med **Jest** för båda modeller
 
 ## VG-del (finns i branch `vg`)
 Utgå från koden som togs fram av er grupp eller gör uppgiften själv. Gör följande ändringar för att uppnå VG:
