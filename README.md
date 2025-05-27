@@ -24,7 +24,7 @@ Detta projekt är en del av kursen Applikationslivscykelhantering på Nackademin
 ## Obligatoriska uppgifter (G-nivå)
 - Tester körs automatiskt via **GitHub Actions**
 - Projektet containeriseras via **Dockerfile**
-- Accomodation`-modell inkluderar:
+- Accomodation-modell inkluderar:
   - adress
   - stad
   - land
