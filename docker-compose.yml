@@ -1,7 +1,3 @@
-#Skapar en docker-compose.yml som innehåller två services:
-#db (PostgreSQL) och app (Node.js-backend).
-#db använder postgresbilden, sätter upp användare/lösenord/databas med miljövariabler, samt sparar data i en volym.
-#app bygger från Dockerfile, får miljövariabler, och depends_on säkerställer att databasen startar först.
 services:
   db:
     image: postgres:15
@@ -13,7 +9,6 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-
   app:
     build:
       context: .
@@ -27,17 +22,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
-
 volumes:
   pgdata:
 
 
-#Starta: docker compose up -d
-#Stoppa: docker compose down
-#Stoppa & ta bort all data: docker compose down -v
-#Visa loggar: docker compose logs -f
-#Kör kommandon i container: docker compose exec <service> <kommando>
-#Byt miljö: docker compose --env-file .env.test up
-#Kommando för köra allt i docker även testerna 
-#docker compose up --build
-#docker compose exec app npm test
